@@ -319,7 +319,6 @@ class Parser {
           var numFmtId = int.parse(node.getAttribute('numFmtId')!);
           final formatCode = node.getAttribute('formatCode')!;
           if (numFmtId < 164) {
-            numFmtId = numFmtId += 164;
             // throw Exception(
             //     'custom numFmtId starts at 164 but found a value of $numFmtId');
           }
@@ -461,14 +460,8 @@ class Parser {
 
           var numFormat = _excel._numFormats.getByNumFmtId(numFmtId);
           if (numFormat == null) {
-            numFormat = _excel._numFormats.getByNumFmtId(numFmtId + 164);
-            if (numFormat == null) {
-              numFormat = NumFormat.standard_0;
-              print('missing numFmt for $numFmtId');
-            } else {
-              _excel._numFmtIds.remove(numFmtId);
-              _excel._numFmtIds.add(numFmtId + 164);
-            }
+            assert(false, 'missing numFmt for $numFmtId');
+            numFormat = NumFormat.standard_0;
           }
 
           CellStyle cellStyle = CellStyle(
