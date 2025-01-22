@@ -463,8 +463,8 @@ class Parser {
           if (numFormat == null) {
             numFormat = _excel._numFormats.getByNumFmtId(numFmtId + 164);
             if (numFormat == null) {
-              assert(false, 'missing numFmt for $numFmtId');
               numFormat = NumFormat.standard_0;
+              print('missing numFmt for $numFmtId');
             } else {
               _excel._numFmtIds.remove(numFmtId);
               _excel._numFmtIds.add(numFmtId + 164);
